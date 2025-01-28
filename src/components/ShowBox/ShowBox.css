@@ -1,0 +1,180 @@
+.showBox {
+  color: white;
+  margin: auto;
+}
+.width70 {
+  width: 70vw;
+}
+.width80 {
+  width: 80vw;
+}
+.categories {
+  display: flex;
+  background: linear-gradient(to right, black, grey);
+  padding: 13px;
+  border-radius: 15px;
+  justify-content: space-around;
+
+  width: 55%;
+  margin: 9px auto;
+}
+.category {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto;
+}
+.categories div {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.categories div input {
+  width: 17px;
+}
+.showArea {
+  background: linear-gradient(to right, black, grey);
+  padding: 13px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+.showArea .titles ul {
+  display: flex;
+}
+.showArea .titles ul li {
+  list-style-type: none;
+  flex: 1;
+}
+
+.symbol {
+  width: 8vw;
+}
+.buyDate {
+  width: 12vw;
+}
+.buyPrice {
+  width: 10vw;
+}
+.quantity {
+  width: 10vw;
+}
+.total {
+  width: 9vw;
+}
+.addEntry {
+  font-weight: bolder;
+  font-family: "Outfit", serif;
+  padding: 13px;
+  border-radius: 20px;
+  outline: none;
+  width: 13vw;
+  cursor: pointer;
+  color: white;
+  text-decoration: underline;
+  background: linear-gradient(rgb(221, 108, 108), rgb(63, 172, 215));
+}
+.stockAddForm {
+  margin: 20px;
+}
+.dataTitles {
+  margin-top: 10px;
+}
+hr {
+  margin-top: 3px;
+}
+.dataTitles ul li {
+  list-style-type: none;
+  display: flex;
+  margin-top: 4px;
+}
+.details {
+  width: 100%;
+}
+.sellButton button {
+  padding: 6px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 8vw;
+  font-weight: 500;
+}
+.green {
+  color: rgb(158, 212, 158);
+}
+.red {
+  color: red;
+}
+.PL {
+  display: flex;
+  justify-content: end;
+}
+
+@media (max-width: 40em) {
+  .showBox {
+    width: 100vw; /* Adjust container width for small screens */
+  }
+  .categories {
+    width: 97%;
+    border-radius: 5px; /* Increase width for smaller screens */
+  }
+  .category {
+    flex-direction: column; /* Stack the categories vertically */
+    align-items: center;
+  }
+  .categories div {
+    justify-content: center;
+  }
+  .addEntry {
+    width: 100%; /* Full width for smaller screens */
+  }
+  .buyDate {
+    display: none;
+  }
+  /* Adjust stock list display */
+
+  .showArea .titles ul li {
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+  }
+  .symbol,
+  .buyPrice,
+  .quantity,
+  .total {
+    width: 100%;
+    display: flex; /* Full width for each item in the list */
+    justify-content: center;
+  }
+  /* .buyPrice {
+    /* margin-left: 4%; */
+}
+/* .total {
+    margin-left: 4%;
+  } */
+.sellButton button {
+  width: 100%; /* Make Sell button full width */
+  margin-left: 5%;
+}
+
+.details {
+  width: 100%;
+  display: block;
+  padding: 5px 0;
+}
+
+.none {
+  display: none;
+}
+
+/* Adjust the overall layout for small screens */
+.stockAddForm,
+.stockSellForm {
+  margin: 10px 0; /* Reduce margins for better space usage */
+}
+.PL {
+  font-size: 0.9rem;
+  margin-left: 5px; /* Slightly smaller text for Profit/Loss section */
+}
+.buyPrice,
+.quantity,
+.PL {
+  width: 100%;
+}

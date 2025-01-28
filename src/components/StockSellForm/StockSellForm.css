@@ -1,0 +1,53 @@
+.stockSellForm {
+  display: flex;
+  justify-content: center;
+  color: white;
+
+  /* width: 50vw; */
+}
+.container2 {
+  background: linear-gradient(90deg, #bdc3c7, #2c3e50);
+  width: 50vw;
+  height: 35vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+.container2 form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 30vw;
+}
+.container2 form div {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+  gap: 1rem;
+}
+.container2 form div input {
+  outline: none;
+  padding: 5px;
+  border-radius: 3px;
+}
+.container2 form button {
+  width: 80px;
+  font-weight: bolder;
+  color: white;
+  background: linear-gradient(to right, green, grey);
+  padding: 0.5rem;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+}
+.button2 {
+  display: flex;
+}
+
+.quantity1 span {
+  color: rgb(19, 166, 44);
+
+  font-size: 1.2rem;
+}

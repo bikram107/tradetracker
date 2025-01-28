@@ -1,0 +1,64 @@
+/* General styling */
+* {
+  color: white;
+}
+
+.showArea1 {
+  max-width: 100%;
+  margin-top: 10px;
+
+  overflow-x: auto; /* Enable horizontal scrolling if content overflows */
+}
+
+.titles ul,
+.details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space between titles/data */
+  gap: 1rem; /* Add gap between columns */
+}
+
+.titles ul li,
+.details div {
+  flex: 1; /* Make each column equal in width */
+  text-align: center; /* Center align content */
+}
+
+.titles ul {
+  margin-bottom: 0.5rem;
+}
+
+hr {
+  border: 1px solid #ccc;
+  margin: 0.5rem 0;
+}
+
+.details {
+  margin-bottom: 0.5rem;
+}
+
+/* Handle visibility of optional columns */
+.none {
+  display: none;
+}
+
+/* Responsive design */
+@media (max-width: 40em) {
+  .titles ul li,
+  .details div {
+    font-size: 0.8rem; /* Smaller font size on small screens */
+  }
+
+  .titles ul,
+  .details {
+    gap: 0.5rem; /* Reduce gap for smaller screens */
+  }
+  .buyDate,
+  .sellDate {
+    display: none;
+  }
+  .showArea1 {
+    max-width: 100%; /* Full width for smaller screens */
+    margin-top: 12px;
+  }
+}

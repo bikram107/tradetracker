@@ -1,0 +1,49 @@
+.stockAddForm {
+  display: flex;
+  justify-content: center;
+  color: white;
+
+  /* width: 50vw; */
+}
+.stockAddForm .container1 {
+  background: linear-gradient(90deg, #bdc3c7, #2c3e50);
+  width: 50vw;
+  height: 35vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+.stockAddForm .container1 form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 30vw;
+}
+.stockAddForm .container1 form div {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+  gap: 1rem;
+}
+.stockAddForm .container1 form div input {
+  outline: none;
+  padding: 5px;
+  border-radius: 3px;
+}
+.stockAddForm .container1 form button {
+  width: 80px;
+  font-weight: bolder;
+  color: white;
+  background: linear-gradient(to right, green, grey);
+  padding: 10px 15px;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+}
+.button {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+}

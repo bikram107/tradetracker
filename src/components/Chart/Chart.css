@@ -1,0 +1,28 @@
+.chart {
+  display: flex;
+  gap: 10px;
+  min-height: 40px;
+  background: linear-gradient(to right, grey, white);
+  width: 30%;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+span {
+  font-weight: bold;
+}
+.green {
+  color: green;
+}
+.red {
+  color: red;
+}
+.overall {
+  margin-top: 20px;
+}
+@media (max-width: 40em) {
+  .chart {
+    width: 100%;
+  }
+}
