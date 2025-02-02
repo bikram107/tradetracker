@@ -13,7 +13,7 @@ import Help from "./pages/Help/Help.jsx";
 function App() {
   return (
     <StockProvider>
-      <Router>
+      <Router basename="/tradetracker">
         <div className="whole">
           <div className="app">
             <NavBar />

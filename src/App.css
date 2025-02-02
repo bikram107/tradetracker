@@ -1,10 +1,12 @@
 .whole {
   background: linear-gradient(90deg, #bdc3c7, #2c3e50);
   height: 100%;
-  min-height: 100vh;
+
   font-family: "Outfit", serif;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  overflow-x: clip;
 }
 .app {
   flex: 1;

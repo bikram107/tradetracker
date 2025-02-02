@@ -20,9 +20,38 @@ span {
 }
 .overall {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+.realChart {
+  display: flex;
+  justify-content: center;
+  height: 500px;
+  width: 100%;
+}
+.realChart canvas {
+  height: 500px;
+  width: 500px;
+}
+
 @media (max-width: 40em) {
+  .realChart canvas {
+    height: 200px;
+    width: 200px;
+  }
+  .overall {
+    max-width: 100%;
+  }
   .chart {
+    gap: 10px;
+    min-height: 40px;
+
     width: 100%;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
   }
 }

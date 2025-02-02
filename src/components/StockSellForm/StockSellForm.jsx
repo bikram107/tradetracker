@@ -24,6 +24,7 @@ const StockSellForm = () => {
 
   function handleSellForm(event) {
     event.preventDefault();
+    // console.log("selected Stocks", selectedStocks);
     if (selectedStocks.symbol && sellPrice && sellQuantity) {
       const sellQuantityNumber = Number(sellQuantity);
       const availableQuantity = Number(selectedStocks.quantity);
@@ -51,8 +52,10 @@ const StockSellForm = () => {
           soldDate: `${day}/${month}/${year}`,
         };
 
-        const updatedSoldStockDetails = [...soldStockDetails, soldStock];
-
+        const sellBeforeReverse = Array.isArray(soldStockDetails)
+          ? [...soldStockDetails, soldStock]
+          : [soldStock];
+        const updatedSoldStockDetails = sellBeforeReverse.reverse();
         localStorage.setItem(
           "soldStockDetails",
           JSON.stringify(updatedSoldStockDetails)
@@ -80,14 +83,14 @@ const StockSellForm = () => {
       alert("Please fill the form properly");
     }
   }
-  console.log(soldStockDetails);
+  // console.log(soldStockDetails);
 
   function handleCancel() {
     setSellPrice(0);
     setSellQuantity(0);
     setSellButtonStatus(false);
   }
-  // localStorage.removeItem("soldStockDetails");
+
   return (
     <div className="stockSellForm">
       <div className="container2">
@@ -97,7 +100,7 @@ const StockSellForm = () => {
             <input
               type="text"
               id="symbol"
-              defaultValue={selectedStocks.symbol || ""}
+              defaultValue={selectedStocks.symbol.toUpperCase() || ""}
               // required
               readOnly
             />
@@ -107,7 +110,8 @@ const StockSellForm = () => {
             <input
               type="number"
               id="sellPrice"
-              value={sellPrice}
+              value={sellPrice === 0 ? "" : sellPrice}
+              placeholder="Enter sold Price"
               required
               onChange={handleSellPrice}
             />
@@ -117,7 +121,8 @@ const StockSellForm = () => {
             <input
               type="number"
               id="quantity"
-              value={sellQuantity}
+              value={sellQuantity === 0 ? "" : sellQuantity}
+              placeholder="Enter sold Quantity"
               required
               onChange={handleSellQuantity}
             />
@@ -126,11 +131,11 @@ const StockSellForm = () => {
             Quantity Available <span>{selectedStocks.quantity || 0}</span>
           </div>
           <div className="button2">
+            <button type="submit" className="sell" onClick={handleSellForm}>
+              Sell
+            </button>
             <button className="cancel" onClick={handleCancel}>
               Cancel
-            </button>
-            <button className="sell" onClick={handleSellForm}>
-              Sell
             </button>
           </div>
         </form>

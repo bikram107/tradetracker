@@ -9,7 +9,7 @@ const AboutUs = () => {
   return (
     <Box
       sx={{
-        backgroundColor: theme.palette.background.default, // Use default background color for consistency
+        background: `linear-gradient(90deg, ${theme.palette.background.paper}, ${theme.palette.primary.main})`, // Use the theme's colors for the gradient
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",

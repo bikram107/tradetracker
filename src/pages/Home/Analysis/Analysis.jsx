@@ -2,18 +2,17 @@ import React from "react";
 import SearchBar from "../../../components/SearchBar/SearchBar";
 import SearchData from "../../../components/SearchData/SearchData";
 import "./Analysis.css";
-import Chart from "../../../components/Chart/Chart";
+import Fart from "../../../components/Chart/Fart";
 
 const Analysis = () => {
   return (
-    <div>
+    <div className="analysis">
       <SearchBar />
+
       <div className="chartDiv">
-        <Chart />
+        <Fart />
       </div>
-      <div className="searchData">
-        <SearchData />
-      </div>
+      <SearchData />
     </div>
   );
 };

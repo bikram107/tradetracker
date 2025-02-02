@@ -2,13 +2,14 @@
   display: flex;
   justify-content: center;
   color: white;
-
-  /* width: 50vw; */
+  width: 90%;
+  height: 90%;
+  align-items: center;
 }
 .stockAddForm .container1 {
   background: linear-gradient(90deg, #bdc3c7, #2c3e50);
-  width: 50vw;
-  height: 35vh;
+  width: 40%;
+  height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,19 +32,61 @@
   outline: none;
   padding: 5px;
   border-radius: 3px;
+  width: 20rem;
+}
+label {
+  width: 5rem;
 }
 .stockAddForm .container1 form button {
-  width: 80px;
+  width: 6rem;
   font-weight: bolder;
   color: white;
   background: linear-gradient(to right, green, grey);
-  padding: 10px 15px;
+  padding: 15px 15px;
   border-radius: 10px;
   outline: none;
   cursor: pointer;
 }
 .button {
-  width: 100%;
+  width: 60%;
   display: flex;
   flex-direction: row-reverse;
+}
+
+@media (max-width: 40em) {
+  .stockAddForm .container1 {
+    background: linear-gradient(90deg, #bdc3c7, #2c3e50);
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+  }
+  .stockAddForm .container1 form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 0 15px;
+  }
+  .stockAddForm {
+    width: 100%;
+    height: 100%;
+  }
+  .stockAddForm .container1 form div {
+    display: flex;
+    justify-content: space-between;
+    margin: 4px 0;
+    gap: 1rem;
+  }
+  .stockAddForm .container1 form div input {
+    padding: 3px;
+    width: 20em;
+  }
+  label {
+    width: 5em;
+  }
 }

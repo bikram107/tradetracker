@@ -19,26 +19,39 @@ const HelpPage = () => {
         <Typography
           variant="h3"
           gutterBottom
-          sx={{ color: theme.palette.primary.main }}
+          sx={{
+            color: theme.palette.primary.main,
+            fontSize: { xs: "2rem", sm: "3rem" }, // Adjust font size for small screens
+          }}
         >
           Help & FAQs
         </Typography>
         <Typography
           variant="subtitle1"
-          sx={{ color: theme.palette.text.secondary }}
+          sx={{
+            color: theme.palette.text.secondary,
+            fontSize: { xs: "0.875rem", sm: "1rem" }, // Adjust font size for small screens
+          }}
         >
           Find answers to your questions and learn how to use the trade tracking
           app.
         </Typography>
       </Box>
 
+      {/* Accordion Sections */}
       <Accordion sx={{ backgroundColor: theme.palette.background.paper }}>
         <AccordionSummary
           expandIcon={
             <ExpandMoreIcon sx={{ color: theme.palette.primary.main }} />
           }
         >
-          <Typography variant="h6" sx={{ color: theme.palette.text.primary }}>
+          <Typography
+            variant="h6"
+            sx={{
+              color: theme.palette.text.primary,
+              fontSize: { xs: "1rem", sm: "1.25rem" },
+            }}
+          >
             How do I add a new trade?
           </Typography>
         </AccordionSummary>
@@ -57,15 +70,20 @@ const HelpPage = () => {
             <ExpandMoreIcon sx={{ color: theme.palette.primary.main }} />
           }
         >
-          <Typography variant="h6" sx={{ color: theme.palette.text.primary }}>
+          <Typography
+            variant="h6"
+            sx={{
+              color: theme.palette.text.primary,
+              fontSize: { xs: "1rem", sm: "1.25rem" },
+            }}
+          >
             Can I edit or delete a trade?
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography sx={{ color: theme.palette.text.secondary }}>
-            Yes, you can edit or delete a trade. Go to the "Analysis" page, find
-            the trade you want to modify, and use the "Edit" or "Delete" options
-            provided.
+            No, Bikram didn't had time and energy to add these features. Try
+            requesting him to add these features.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -76,15 +94,21 @@ const HelpPage = () => {
             <ExpandMoreIcon sx={{ color: theme.palette.primary.main }} />
           }
         >
-          <Typography variant="h6" sx={{ color: theme.palette.text.primary }}>
-            How do I view my profit and loss (P/L)?
+          <Typography
+            variant="h6"
+            sx={{
+              color: theme.palette.text.primary,
+              fontSize: { xs: "1rem", sm: "1.25rem" },
+            }}
+          >
+            How do I view my profit and loss ?
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography sx={{ color: theme.palette.text.secondary }}>
             Navigate to the "Analysis" page to view a detailed breakdown of your
             trades. You can see the profit and loss (P/L) for each trade and a
-            summary of your overall performance.
+            summary of your overall performance with a doughnut chart.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -95,7 +119,13 @@ const HelpPage = () => {
             <ExpandMoreIcon sx={{ color: theme.palette.primary.main }} />
           }
         >
-          <Typography variant="h6" sx={{ color: theme.palette.text.primary }}>
+          <Typography
+            variant="h6"
+            sx={{
+              color: theme.palette.text.primary,
+              fontSize: { xs: "1rem", sm: "1.25rem" },
+            }}
+          >
             Is my data secure?
           </Typography>
         </AccordionSummary>
@@ -114,7 +144,13 @@ const HelpPage = () => {
             <ExpandMoreIcon sx={{ color: theme.palette.primary.main }} />
           }
         >
-          <Typography variant="h6" sx={{ color: theme.palette.text.primary }}>
+          <Typography
+            variant="h6"
+            sx={{
+              color: theme.palette.text.primary,
+              fontSize: { xs: "1rem", sm: "1.25rem" },
+            }}
+          >
             How do I contact support?
           </Typography>
         </AccordionSummary>
@@ -129,7 +165,10 @@ const HelpPage = () => {
       <Box textAlign="center" mt={4}>
         <Typography
           variant="subtitle1"
-          sx={{ color: theme.palette.text.secondary }}
+          sx={{
+            color: theme.palette.text.secondary,
+            fontSize: { xs: "0.875rem", sm: "1rem" }, // Adjust font size for small screens
+          }}
         >
           Didn’t find what you were looking for? Reach out to our support team
           for help.

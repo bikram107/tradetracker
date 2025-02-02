@@ -28,14 +28,15 @@ const StockAddForm = () => {
       }/${getDate.getFullYear()}`;
       const ranNUm = Math.floor(Math.random() * 100) + 1;
       const newData = {
-        symbol: stockSymbol,
+        symbol: stockSymbol.toUpperCase(),
         buyPrice: stockPrice,
         quantity: stockQuantity,
         date: currentDate,
         id: `${stockSymbol}-${ranNUm}`,
       };
       setButtonStatus(false);
-      const updatedStockDetails = [...stockDetails, newData];
+      const buyBeforeReverse = [...stockDetails, newData];
+      const updatedStockDetails = buyBeforeReverse.reverse();
       localStorage.setItem("stockDetails", JSON.stringify(updatedStockDetails));
       setStockDetails(updatedStockDetails);
       setStockPrice(0);
@@ -45,7 +46,9 @@ const StockAddForm = () => {
       alert("Please fill all the fields");
     }
   }
-
+  function handleCancelButton() {
+    setButtonStatus(false);
+  }
   return (
     <div className="stockAddForm">
       <div className="container1">
@@ -56,6 +59,7 @@ const StockAddForm = () => {
               type="text"
               id="symbol"
               value={stockSymbol}
+              placeholder="Enter symbol"
               required
               onChange={handleSymbol}
             />
@@ -65,7 +69,8 @@ const StockAddForm = () => {
             <input
               type="number"
               id="price"
-              value={stockPrice}
+              value={stockPrice === 0 ? "" : stockPrice} // Show empty string when it's 0
+              placeholder="Enter price" // Placeholder text when empty
               required
               onChange={handlePrice}
             />
@@ -75,7 +80,8 @@ const StockAddForm = () => {
             <input
               type="number"
               id="quantity"
-              value={stockQuantity}
+              value={stockQuantity === 0 ? "" : stockQuantity} // Show empty string when it's 0
+              placeholder="Enter quantity" // Placeholder text when empty
               required
               onChange={handleQuantity}
             />
@@ -83,6 +89,9 @@ const StockAddForm = () => {
           <div className="button">
             <button className="submit" onClick={handleAdd}>
               Add
+            </button>
+            <button className="cancel" onClick={handleCancelButton}>
+              Cancel
             </button>
           </div>
         </form>

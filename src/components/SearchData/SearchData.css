@@ -2,14 +2,22 @@
 * {
   color: white;
 }
+.searchData {
+  max-width: 100%;
+}
 
 .showArea1 {
   max-width: 100%;
-  margin-top: 10px;
-
-  overflow-x: auto; /* Enable horizontal scrolling if content overflows */
+  margin-top: 0;
 }
+.showArea {
+  background: linear-gradient(to right, black, grey);
+  padding: 13px;
 
+  border-radius: 12px;
+  max-height: 70vh;
+  overflow-x: auto;
+}
 .titles ul,
 .details {
   display: flex;
@@ -40,6 +48,12 @@ hr {
 /* Handle visibility of optional columns */
 .none {
   display: none;
+}
+.hidden {
+  display: none;
+  margin: 0;
+  padding: 0;
+  height: 0;
 }
 
 /* Responsive design */

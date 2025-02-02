@@ -21,7 +21,7 @@ export const StockProvider = ({ children }) => {
     if (storedStockDetails) {
       setStockDetails(JSON.parse(storedStockDetails));
     }
-    if (storedStockDetails) {
+    if (storedSoldStockDetails) {
       setSoldStockDetails(JSON.parse(storedSoldStockDetails));
     }
   }, []);

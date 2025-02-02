@@ -15,9 +15,11 @@ const SearchBar = () => {
 
   function handleSearchButton(event) {
     event.preventDefault();
+    console.log("sold stocks", soldStockDetails);
     const output = soldStockDetails.filter(
       (item) => item.symbol === searchItem
     );
+    console.log("search details", output);
     setSearchDetails(output);
     setSearchItem("");
   }
@@ -26,6 +28,8 @@ const SearchBar = () => {
     setSearchItem(event.target.value.toUpperCase());
     clearSearchDetails();
   }
+  console.log("search item", searchItem);
+
   function clearSearchDetails() {
     setSearchDetails([]);
   }

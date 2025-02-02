@@ -1,6 +1,7 @@
 .navBar {
   padding: 10px 0;
   background-color: #3b3939;
+  max-width: 100%;
 }
 
 .container {
@@ -8,8 +9,14 @@
   justify-content: space-between;
   color: white;
   flex-wrap: wrap;
+  max-width: 100%;
+  overflow: hidden;
 }
-
+.container .navs ul a {
+  display: block;
+  text-decoration: none;
+  color: white;
+}
 .container .navs {
   max-width: 40%;
 }
@@ -41,5 +48,8 @@
   }
   .container .logo img {
     display: none;
+  }
+  .navBar {
+    max-width: 100%;
   }
 }

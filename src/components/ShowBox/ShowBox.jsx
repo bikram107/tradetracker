@@ -22,7 +22,7 @@ const ShowBox = () => {
     setButtonStatus(false);
   }
   // console.log("stock Details", stockDetails);
-  // console.log(" sold stock Details", soldStockDetails);
+  console.log(" sold stock Details", soldStockDetails);
   function handleAddEntry() {
     if (buttonStatus == false) {
       setButtonStatus(true);
@@ -72,7 +72,7 @@ const ShowBox = () => {
       </div>
 
       {buttonStatus ? (
-        <div className="stockAddForm">
+        <div className="stockAdd">
           <StockAddForm />
         </div>
       ) : null}
