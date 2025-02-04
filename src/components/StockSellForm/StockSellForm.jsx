@@ -50,7 +50,9 @@ const StockSellForm = () => {
           month: month,
           year: year,
           soldDate: `${day}/${month}/${year}`,
+          pl: (sellPrice - selectedStocks.buyPrice) * sellQuantity,
         };
+        console.log(soldStock.pl);
 
         const sellBeforeReverse = Array.isArray(soldStockDetails)
           ? [...soldStockDetails, soldStock]

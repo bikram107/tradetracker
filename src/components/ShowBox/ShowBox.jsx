@@ -21,6 +21,7 @@ const ShowBox = () => {
     setSellButtonStatus(true);
     setButtonStatus(false);
   }
+
   // console.log("stock Details", stockDetails);
   console.log(" sold stock Details", soldStockDetails);
   function handleAddEntry() {
@@ -37,6 +38,11 @@ const ShowBox = () => {
     setButtonStatus(false);
     setSellButtonStatus(false);
   }
+
+  function fixDecimal(item) {
+    return item % 1 === 0 ? item : item.toFixed(2);
+  }
+  console.log("soldStockDetails", soldStockDetails);
   return (
     <div
       className={`showBox ${category === "onGoing" ? "width70" : "width80"}`}
@@ -159,12 +165,9 @@ const ShowBox = () => {
                         : null
                     }`}
                   >
-                    {(stock.soldQuantity * (stock.soldPrice - stock.buyPrice)) %
-                      1 ===
-                    0
-                      ? stock.soldQuantity * (stock.soldPrice - stock.buyPrice)
-                      : stock.soldQuantity *
-                        (stock.soldPrice - stock.buyPrice).toFixed(2)}
+                    {fixDecimal(
+                      stock.soldQuantity * (stock.soldPrice - stock.buyPrice)
+                    )}
                   </div>
                 </li>
               ))}
