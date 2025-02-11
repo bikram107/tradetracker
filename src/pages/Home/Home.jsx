@@ -5,7 +5,7 @@ import ShowBox from "../../components/ShowBox/ShowBox.jsx";
 
 const Home = () => {
   return (
-    <div className="Home">
+    <div className="Home ">
       <div className="hero">
         <h1>Worried About Managing Your Trades. Leave Your Worries to Us.</h1>
         <img src={GreenBull} alt="" />

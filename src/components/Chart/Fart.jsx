@@ -24,7 +24,12 @@ const Fart = () => {
       if (soldStockDetails) {
         for (let i = 0; i < soldStockDetails.length; i++) {
           const stock = soldStockDetails[i];
-          const pl = (stock.soldPrice - stock.buyPrice) * stock.soldQuantity;
+          console.log(stock);
+          const pl =
+            stock.soldQuantity * stock.soldPrice -
+            stock.soldQuantity * stock.buyPrice -
+            stock.brokerCharge -
+            stock.soldBrokerCharge;
           totalPL += pl;
         }
         setShowOutput(totalPL.toFixed(2)); // Set the overall profit/loss
@@ -41,7 +46,10 @@ const Fart = () => {
     // Iterate through each sold stock and calculate profit/loss
     soldStockDetails.forEach((stock) => {
       const profitOrLoss =
-        (stock.soldPrice - stock.buyPrice) * stock.soldQuantity; // Corrected formula
+        stock.soldPrice * stock.soldQuantity -
+        stock.buyPrice * stock.soldQuantity -
+        stock.brokerCharge -
+        stock.soldBrokerCharge; // Corrected formula
 
       // Accumulate total profit or loss
       if (profitOrLoss > 0) {

@@ -5,8 +5,14 @@ import { StockContext } from "../../StockContext";
 const StockSellForm = () => {
   const [sellPrice, setSellPrice] = useState(0);
   const [sellQuantity, setSellQuantity] = useState(0);
-  const { setSellButtonStatus, stockDetails, setStockDetails } =
-    useContext(StockContext);
+  const {
+    setSellButtonStatus,
+    stockDetails,
+    setStockDetails,
+    soldBrokerCharge,
+    setSoldBrokerCharge,
+    setShowStockDetails,
+  } = useContext(StockContext);
 
   const {
     selectedStocks,
@@ -21,11 +27,19 @@ const StockSellForm = () => {
   function handleSellQuantity(event) {
     setSellQuantity(event.target.value);
   }
+  function handleSoldBrokerCharge(event) {
+    setSoldBrokerCharge(event.target.value);
+  }
 
   function handleSellForm(event) {
     event.preventDefault();
-    // console.log("selected Stocks", selectedStocks);
-    if (selectedStocks.symbol && sellPrice && sellQuantity) {
+    //check for stock details
+    if (
+      selectedStocks.symbol &&
+      sellPrice &&
+      sellQuantity &&
+      soldBrokerCharge
+    ) {
       const sellQuantityNumber = Number(sellQuantity);
       const availableQuantity = Number(selectedStocks.quantity);
       if (isNaN(sellQuantityNumber) || sellQuantityNumber <= 0) {
@@ -35,6 +49,7 @@ const StockSellForm = () => {
         alert("You cannot sell more than you have");
         return;
       } else {
+        //creating new entry as object for the soldStocks data
         const getDate = new Date();
         const day = getDate.getDate();
         const month = getDate.getMonth() + 1;
@@ -46,22 +61,31 @@ const StockSellForm = () => {
           boughtDate: selectedStocks.date,
           soldPrice: sellPrice,
           soldQuantity: sellQuantity,
+          brokerCharge: selectedStocks.brokerCharge,
           day: day,
           month: month,
           year: year,
+          soldBrokerCharge: soldBrokerCharge,
           soldDate: `${day}/${month}/${year}`,
-          pl: (sellPrice - selectedStocks.buyPrice) * sellQuantity,
+          pl:
+            (sellPrice - selectedStocks.buyPrice) * sellQuantity -
+            selectedStocks.brokerCharge -
+            soldBrokerCharge,
         };
-        console.log(soldStock.pl);
 
-        const sellBeforeReverse = Array.isArray(soldStockDetails)
+        //Updating the array with the new created object
+
+        const updatedSoldStockDetails = Array.isArray(soldStockDetails)
           ? [...soldStockDetails, soldStock]
           : [soldStock];
-        const updatedSoldStockDetails = sellBeforeReverse.reverse();
+
+        //Storing SoldStockDetails in Local Storage
         localStorage.setItem(
           "soldStockDetails",
           JSON.stringify(updatedSoldStockDetails)
         );
+
+        //Reducing the bought quantity from sold quantity
         const updatedStockDetails = stockDetails.map((stock) => {
           if (stock.id == selectedStocks.id) {
             return {
@@ -71,15 +95,18 @@ const StockSellForm = () => {
           }
           return stock;
         });
+
+        //Filtering out the stocks having 0 quantity of stocks
         const finalStockDetails = updatedStockDetails.filter(
           (stock) => stock.quantity > 0
         );
-        setStockDetails(finalStockDetails);
-        localStorage.setItem("stockDetails", JSON.stringify(finalStockDetails));
+        setStockDetails(finalStockDetails); //updating the stocks details with filtered stockDetails
+
+        localStorage.setItem("stockDetails", JSON.stringify(finalStockDetails)); //Storing the filtered stockDetails to the local storage
         setSoldStockDetails(updatedSoldStockDetails);
         setSellPrice(0);
         setSellQuantity(0);
-        setSellButtonStatus(false);
+        setSellButtonStatus(false); //removing the sell form
       }
     } else {
       alert("Please fill the form properly");
@@ -127,6 +154,17 @@ const StockSellForm = () => {
               placeholder="Enter sold Quantity"
               required
               onChange={handleSellQuantity}
+            />
+          </div>
+          <div>
+            <label htmlFor="soldBrokerCharge">Broker Charge</label>
+            <input
+              type="number"
+              id="soldBrokerCharge"
+              value={soldBrokerCharge === 0 ? "" : soldBrokerCharge} // Show empty string when it's 0
+              placeholder="Enter Broker Charge" // Placeholder text when empty
+              required
+              onChange={handleSoldBrokerCharge}
             />
           </div>
           <div className="quantity1">

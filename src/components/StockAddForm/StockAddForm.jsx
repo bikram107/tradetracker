@@ -7,7 +7,14 @@ const StockAddForm = () => {
   const [stockPrice, setStockPrice] = useState(0);
   const [stockQuantity, setStockQuantity] = useState(0);
   const { buttonStatus, setButtonStatus } = useContext(StockContext);
-  const { stockDetails, setStockDetails } = useContext(StockContext);
+  const {
+    stockDetails,
+    setStockDetails,
+    setShowStockDetails,
+    showStockDetails,
+    brokerCharge,
+    setBrokerCharge,
+  } = useContext(StockContext);
 
   function handleSymbol(event) {
     setStockSymbol(event.target.value);
@@ -18,26 +25,33 @@ const StockAddForm = () => {
   function handleQuantity(event) {
     setStockQuantity(event.target.value);
   }
+  function handleBrokerCharge(event) {
+    setBrokerCharge(event.target.value);
+  }
+
   function handleAdd(event) {
     event.preventDefault();
-
-    if (stockPrice && stockSymbol && stockQuantity) {
+    //checking all the input fields
+    if (stockPrice && stockSymbol && stockQuantity && brokerCharge) {
       const getDate = new Date();
       const currentDate = `${getDate.getDate()}/${
         getDate.getMonth() + 1
       }/${getDate.getFullYear()}`;
       const ranNUm = Math.floor(Math.random() * 100) + 1;
+      //creating new entry as object for onGoing Stocks
       const newData = {
         symbol: stockSymbol.toUpperCase(),
         buyPrice: stockPrice,
         quantity: stockQuantity,
         date: currentDate,
+        brokerCharge: brokerCharge,
         id: `${stockSymbol}-${ranNUm}`,
       };
       setButtonStatus(false);
-      const buyBeforeReverse = [...stockDetails, newData];
-      const updatedStockDetails = buyBeforeReverse.reverse();
-      localStorage.setItem("stockDetails", JSON.stringify(updatedStockDetails));
+
+      const updatedStockDetails = [...stockDetails, newData];
+      localStorage.setItem("stockDetails", JSON.stringify(updatedStockDetails)); //Storing the updated ongoing stock data to local storage
+      setShowStockDetails(updatedStockDetails);
       setStockDetails(updatedStockDetails);
       setStockPrice(0);
       setStockSymbol("");
@@ -84,6 +98,17 @@ const StockAddForm = () => {
               placeholder="Enter quantity" // Placeholder text when empty
               required
               onChange={handleQuantity}
+            />
+          </div>
+          <div>
+            <label htmlFor="brokerCharge">Broker Charge</label>
+            <input
+              type="number"
+              id="brokerCharge"
+              value={brokerCharge === 0 ? "" : brokerCharge} // Show empty string when it's 0
+              placeholder="Enter Broker Charge" // Placeholder text when empty
+              required
+              onChange={handleBrokerCharge}
             />
           </div>
           <div className="button">

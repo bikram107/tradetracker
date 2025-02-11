@@ -1,7 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { StockContext } from "../../StockContext.jsx";
 import "./ShowBox.css";
 import StockAddForm from "../StockAddForm/StockAddForm";
+
 import StockSellForm from "../StockSellForm/StockSellForm.jsx";
 
 const ShowBox = () => {
@@ -14,6 +15,10 @@ const ShowBox = () => {
     category,
     setCategory,
     soldStockDetails,
+    showSoldStockDetails,
+    showStockDetails,
+    setShowSoldStockDetails,
+    setShowStockDetails,
   } = useContext(StockContext);
 
   function handleSell(stock) {
@@ -22,8 +27,15 @@ const ShowBox = () => {
     setButtonStatus(false);
   }
 
-  // console.log("stock Details", stockDetails);
-  console.log(" sold stock Details", soldStockDetails);
+  useEffect(() => {
+    const reversedSoldStock = [...soldStockDetails].reverse();
+    setShowSoldStockDetails(reversedSoldStock);
+  }, [soldStockDetails]);
+  useEffect(() => {
+    const reversedStock = [...stockDetails].reverse();
+    setShowStockDetails(reversedStock);
+  }, [stockDetails]);
+
   function handleAddEntry() {
     if (buttonStatus == false) {
       setButtonStatus(true);
@@ -42,7 +54,8 @@ const ShowBox = () => {
   function fixDecimal(item) {
     return item % 1 === 0 ? item : item.toFixed(2);
   }
-  console.log("soldStockDetails", soldStockDetails);
+  console.log("stockDetails", stockDetails);
+  console.log("showstockDetails", showStockDetails);
   return (
     <div
       className={`showBox ${category === "onGoing" ? "width70" : "width80"}`}
@@ -95,14 +108,14 @@ const ShowBox = () => {
               <li className="buyDate ">Buy Date</li>
               <li className="buyPrice">Buy Price</li>
               <li className="quantity">Quantity</li>
-              <li className="total">Total</li>
+              <li className="total">Total(inc Broker Charge)</li>
               <li></li>
             </ul>
             <hr />
           </div>
           <div className="dataTitles ">
             <ul>
-              {stockDetails.map((stock, index) => (
+              {showStockDetails.map((stock, index) => (
                 <li key={index} className="details">
                   <div className="symbol">{stock.symbol.toUpperCase()}</div>
                   <div className="buyDate ">{stock.date}</div>
@@ -110,8 +123,11 @@ const ShowBox = () => {
                   <div className="quantity">{stock.quantity}</div>
                   <div className="total">
                     {(stock.quantity * stock.buyPrice) % 1 === 0
-                      ? stock.quantity * stock.buyPrice
-                      : (stock.quantity * stock.buyPrice).toFixed(2)}
+                      ? stock.quantity * stock.buyPrice - stock.brokerCharge
+                      : (
+                          stock.quantity * stock.buyPrice -
+                          stock.brokerCharge
+                        ).toFixed(2)}
                   </div>
                   <div className="sellButton">
                     <button onClick={() => handleSell(stock)}>Sell</button>
@@ -133,14 +149,14 @@ const ShowBox = () => {
               <li className="buyPrice">Buy Price</li>
               <li className="buyPrice">Sell Price</li>
               <li className="quantity">Quantity</li>
-              <li className="total">Total</li>
+              <li className="total">Total (inc Broker Charge)</li>
               <li className="PL">P/L</li>
             </ul>
             <hr />
           </div>
           <div className="dataTitles ">
             <ul>
-              {soldStockDetails.map((stock, index) => (
+              {showSoldStockDetails.map((stock, index) => (
                 <li key={index} className="details">
                   <div className="symbol">{stock.symbol.toUpperCase()}</div>
                   <div className="buyDate ">{stock.boughtDate}</div>
@@ -149,24 +165,40 @@ const ShowBox = () => {
                   <div className="buyPrice">{stock.soldPrice}</div>
                   <div className="quantity">{stock.soldQuantity}</div>
                   <div className="total">
-                    {(stock.soldQuantity * stock.soldPrice) % 1 === 0
-                      ? stock.soldQuantity * stock.soldPrice
-                      : (stock.soldQuantity * stock.soldPrice).toFixed(2)}
+                    {(stock.soldQuantity * stock.soldPrice -
+                      stock.brokerCharge -
+                      stock.soldBrokerCharge) %
+                      1 ===
+                    0
+                      ? stock.soldQuantity * stock.soldPrice -
+                        stock.brokerCharge -
+                        stock.soldBrokerCharge
+                      : (
+                          stock.soldQuantity * stock.soldPrice -
+                          stock.brokerCharge -
+                          stock.soldBrokerCharge
+                        ).toFixed(2)}
                   </div>
                   <div
                     className={`PL ${
-                      stock.soldQuantity * (stock.soldPrice - stock.buyPrice) >
+                      stock.soldQuantity * (stock.soldPrice - stock.buyPrice) -
+                        stock.soldBrokerCharge -
+                        stock.brokerCharge >
                       0
                         ? "green"
                         : stock.soldQuantity *
-                            (stock.soldPrice - stock.buyPrice) <
+                            (stock.soldPrice - stock.buyPrice) -
+                            stock.soldBrokerCharge -
+                            stock.brokerCharge <
                           0
                         ? "red"
-                        : null
+                        : ""
                     }`}
                   >
                     {fixDecimal(
-                      stock.soldQuantity * (stock.soldPrice - stock.buyPrice)
+                      stock.soldQuantity * (stock.soldPrice - stock.buyPrice) -
+                        stock.soldBrokerCharge -
+                        stock.brokerCharge
                     )}
                   </div>
                 </li>
